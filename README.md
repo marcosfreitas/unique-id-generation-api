@@ -32,7 +32,6 @@ DB_ROOT_PASSWORD=banana pijama
 DB_USER=docker
 DB_PASSWORD=banana pijama
 
-POST_DAILY_LIMIT=5
 PAGE_SIZE=10
 ```
 

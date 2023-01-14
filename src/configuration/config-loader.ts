@@ -34,9 +34,9 @@ export const configLoader = (
     // uniqueId: {
     //   ,
     // },
-    // pagination: {
-    //   pageSize: parseInt(env.PAGE_SIZE, 10) || 10,
-    // },
+    pagination: {
+      pageSize: parseInt(env.PAGE_SIZE, 10) || 10,
+    },
   };
 
   return plainToInstance(GlobalConfig, configurations);
