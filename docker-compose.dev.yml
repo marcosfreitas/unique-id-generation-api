@@ -1,0 +1,55 @@
+version: "3.7"
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+    tty: true
+    depends_on:
+      - database
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+      - "${APP_DEBUGGER_PORT}:${APP_DEBUGGER_PORT}"
+    networks:
+      - backend
+      - database
+    volumes:
+      - ./:/srv/unique-id-generation-api
+    command: yarn start:dev
+
+  database:
+    # @todo some improvement on mysql authentication method should be added
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: ${APP_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - database
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    restart: unless-stopped
+    cap_add:
+      - "SYS_NICE"
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+
+
+networks:
+
+  backend:
+    driver: bridge
+  database:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
+    labels:
+      mf.project.name: ${APP_NAME}
