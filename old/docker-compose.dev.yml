@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   api:
-    container_name: unique-id-generation
+    container_name: api
     build:
       context: .
     tty: true
@@ -15,7 +15,7 @@ services:
       - backend
       - database
     volumes:
-      - ./:/srv/unique-id-generation
+      - ./:/srv/unique-id-generation-api
     command: yarn start:dev
 
   database:

@@ -1,31 +1,38 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "outDir": "dist",
     "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "ScriptHost", "ES2016.Array.Include"
+    ],
+    "jsx": "react-jsx",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
+    "allowJs": false,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "baseUrl": "./",
     "paths": {
       "@app/*": ["src/*"],
-      "@configuration/*": ["src/configuration/*"],
-      "@database/*": ["src/database/*"],
-      "@modules/*": ["src/modules/*"],
       "@shared/*": ["src/shared/*"],
+      "@components/*": ["src/components/*"],
       "@test/*": ["test/*"]
-    }
+    },
   },
+  "include": [
+    "src"
+  ],
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
 }

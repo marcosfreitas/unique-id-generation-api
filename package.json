@@ -1,68 +1,64 @@
 {
-  "name": "unique-id-generation-api",
+  "name": "unique-id-generation-example",
+  "author": "Marcos Freitas <marcosvsfreitas+github-unique-id-generation-repo@gmail.com>",
   "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "description": "A simple package as example of Alpha-numeric Unique ID generation",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.js",
+  "repository": "https://github.com/marcosfreitas/unique-id-generation-example",
+  "license": "GPLv3",
+  "keywords": [
+    "node",
+    "unique-id"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --runInBand --detectOpenHandles",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "typeorm-ts-node-commonjs -d ./datasource.ts",
-    "db:create": "ts-node ./node_modules/typeorm-extension/dist/cli/index.js db:create",
-    "db:drop": "ts-node ./node_modules/typeorm-extension/dist/cli/index.js db:drop",
-    "db:seed": "ts-node ./node_modules/typeorm-extension/dist/cli/index.js seed"
+    "build": "tsc --build && tsc-alias",
+    "build:watch": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "format": "prettier --write \"{src,test}/**/*.{ts, tsx, json}\"",
+    "lint": "eslint \"{src,test}/**/*.{ts, tsx, json}\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "dependencies": {
-    "@nestjs/common": "^9.0.0",
-    "@nestjs/config": "^2.2.0",
-    "@nestjs/core": "^9.0.0",
-    "@nestjs/platform-express": "^9.0.0",
-    "@nestjs/typeorm": "^9.0.0",
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
-    "mysql2": "^2.3.3",
+    "class-validator": "^0.14.0",
+    "express-validator": "^6.14.2",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0",
-    "sqlite3": "^5.0.11",
-    "typeorm": "^0.3.7",
-    "typeorm-extension": "^2.1.5"
+    "rimraf": "^4.0.5"
+  },
+  "peerDependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
   },
   "devDependencies": {
-    "@faker-js/faker": "faker-js/faker",
-    "@nestjs/cli": "^9.0.0",
-    "@nestjs/schematics": "^9.0.0",
-    "@nestjs/testing": "^9.0.0",
-    "@types/express": "^4.17.13",
-    "@types/jest": "28.1.4",
-    "@types/node": "^16.0.0",
-    "@types/supertest": "^2.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^8.0.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@typescript-eslint/eslint-plugin": "^5.45.1",
+    "@typescript-eslint/parser": "^5.45.1",
+    "concurrently": "^7.5.0",
+    "crypto-js": "^4.1.1",
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "jest": "28.1.2",
-    "prettier": "^2.3.2",
+    "prettier": "^2.7.1",
     "source-map-support": "^0.5.20",
-    "supertest": "^6.2.4",
     "ts-jest": "28.0.5",
-    "ts-loader": "^9.2.3",
-    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.7.1",
     "tsconfig-paths": "4.0.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.9.4"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -82,11 +78,12 @@
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^@app/(.*)$": "<rootDir>/src/$1",
-      "^@configuration/(.*)$": "<rootDir>/src/configuration/$1",
-      "^@database/(.*)$": "<rootDir>/src/database/$1",
-      "^@modules/(.*)$": "<rootDir>/src/modules/$1",
       "^@shared/(.*)$": "<rootDir>/src/shared/$1",
+      "^@components/(.*)$": "<rootDir>/src/components/$1",
       "^@test/(.*)$": "<rootDir>/test/$1"
     }
+  },
+  "engines": {
+    "node": ">=16"
   }
 }
