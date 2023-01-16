@@ -19,7 +19,7 @@ Create a file `.env` file at the project's root and define these environment var
 
 
 ```diff
-+ APP_NAME=POOR-TWITTER <- this will be the name of the database
++ APP_NAME=UNIQUE-ID-GENERATION-API <- this will be the name of the database
 
 NODE_ENV=dev
 APP_VERSION=1.0.0
@@ -79,11 +79,7 @@ $ yarn db:create
 
 Access the database with the credentials provided at the `.env` file.
 
-As host use `localhost:3306` to access the docker container externally
-
-```sql
-  INSERT INTO POOR_TWITTER.users (id, uuid, username, createdAt, updatedAt) VALUES(NULL, '46012ff7-f552-438f-9017-7041d6bc7ada', 'gunter01', NULL, NULL);
-```
+Use `localhost:3306` as the host to access the docker container externally
 
 ## Testing
 

@@ -1,4 +1,4 @@
-import { Column, Entity, Generated, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, Generated, PrimaryColumn } from 'typeorm';
 
 /**
  * User's model and entity definition.
@@ -13,7 +13,7 @@ export class ReadableCode {
   id: string;
 
   @Column()
-  readableCode: string;
+  code: string;
 
   @Column()
   originalTransactionId: string;
@@ -25,7 +25,16 @@ export class ReadableCode {
   updatedAt: Date;
 
   constructor(readableCode: string, originalTransactionId: string) {
-    this.readableCode = readableCode;
+    this.code = readableCode;
     this.originalTransactionId = originalTransactionId;
+  }
+
+  toResponse() {
+    return {
+      code: this.code,
+      originalTransactionId: this.originalTransactionId,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    };
   }
 }
