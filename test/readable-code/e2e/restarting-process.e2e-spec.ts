@@ -12,10 +12,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 
 import { ReadableCode } from '@app/modules/readable-code/domain/contracts/readable-code.entity';
 import { AppModule } from '@app/app.module';
-import { readableCodeGeneration } from '@app/shared/domain/readable-code-generation';
 import { ConfigService } from '@nestjs/config';
-import { assert } from 'console';
-import { fail } from 'assert';
 
 let app: INestApplication;
 let readableCodeRepository: Repository<ReadableCode>;
@@ -26,9 +23,7 @@ const startApp = async () => {
     imports: [AppModule],
   }).compile();
 
-  app = moduleFixture.createNestApplication({
-    logger: console,
-  });
+  app = moduleFixture.createNestApplication();
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );

@@ -11,8 +11,6 @@ import { CreateReadableCodeCommand } from '../../domain/commands/create-readable
 import { GetReadableCodeCommand } from '../../domain/commands/get-readable-code.command';
 import { ReadableCodeRequest } from '../../domain/contracts/create-readable-code.request';
 
-import v8 from 'v8';
-
 @Controller('v1/readable-codes')
 export class ReadableCodeController {
   constructor(
@@ -31,7 +29,6 @@ export class ReadableCodeController {
   @Post()
   @HttpCode(201)
   public async create(@Body() request: ReadableCodeRequest) {
-    v8.writeHeapSnapshot();
     return this.createReadableCodeCommand.execute(
       request.originalTransactionId,
     );

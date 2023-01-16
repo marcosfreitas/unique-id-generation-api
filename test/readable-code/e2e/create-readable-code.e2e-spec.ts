@@ -20,9 +20,7 @@ describe('/v1/readable-codes (POST) - when creating a Readable Code', () => {
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication({
-      logger: console,
-    });
+    app = moduleFixture.createNestApplication();
     app.useGlobalPipes(
       new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
     );
@@ -113,6 +111,8 @@ describe('/v1/readable-codes (POST) - when creating a Readable Code', () => {
           })
           .expect(HttpStatus.CREATED);
 
+        expect(response).toBeTruthy();
+
         expect(response.body).toHaveProperty('data');
 
         expect(response.body.data).toHaveProperty('code');
@@ -129,16 +129,19 @@ describe('/v1/readable-codes (POST) - when creating a Readable Code', () => {
       });
 
       it('... for multiple parallel requests', async () => {
+        await readableCodeRepository.delete({});
+
         const doRequest = async (index) => {
+          let r;
           try {
-            await request(app.getHttpServer())
+            r = await request(app.getHttpServer())
               .post('/v1/readable-codes')
               .send({
                 originalTransactionId: index,
               })
               .expect(HttpStatus.CREATED);
           } catch (e) {
-            console.log(e);
+            console.log(r.body);
             fail('Unexpected error');
           }
         };
