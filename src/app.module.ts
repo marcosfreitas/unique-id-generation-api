@@ -5,8 +5,7 @@ import { config } from '../ormconfig-nest';
 
 import { configLoader } from './configuration/config-loader';
 import { validate } from './configuration/config-validator';
-import { PostModule } from './modules/post/post.module';
-import { UserModule } from './modules/user/user.module';
+import { ReadableCodeModule } from './modules/readable-code/readable-code.module';
 
 @Module({
   imports: [
@@ -18,8 +17,7 @@ import { UserModule } from './modules/user/user.module';
 
     TypeOrmModule.forRootAsync(config),
 
-    PostModule,
-    UserModule,
+    ReadableCodeModule,
   ],
   controllers: [],
   providers: [],

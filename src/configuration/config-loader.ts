@@ -30,13 +30,12 @@ export const configLoader = (
       user: env.DB_USER,
       password: env.DB_PASSWORD,
     },
-    // @todo
-    // uniqueId: {
-    //   ,
-    // },
-    // pagination: {
-    //   pageSize: parseInt(env.PAGE_SIZE, 10) || 10,
-    // },
+    uniqueId: {
+      codeLength: parseInt(env.CODE_LENGTH, 10) || 7,
+    },
+    pagination: {
+      pageSize: parseInt(env.PAGE_SIZE, 10) || 10,
+    },
   };
 
   return plainToInstance(GlobalConfig, configurations);

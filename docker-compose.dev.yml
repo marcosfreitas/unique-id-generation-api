@@ -19,7 +19,6 @@ services:
     command: yarn start:dev
 
   database:
-    # @todo some improvement on mysql authentication method should be added
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     environment:
